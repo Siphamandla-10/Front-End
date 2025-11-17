@@ -1,0 +1,863 @@
+/* src/components/Dashboard.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f8f7fc;
+}
+
+/* ============================================
+   SIDEBAR STYLES - BRIGHT MAGENTA PURPLE
+============================================ */
+.sidebar {
+  width: 260px;
+  background: linear-gradient(180deg, #c026d3 0%, #d946ef 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 2px 0 12px rgba(192, 38, 211, 0.3);
+}
+
+.sidebar.closed {
+  width: 70px;
+}
+
+/* ✅ UPDATED: Sidebar header without toggle button */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.closed .sidebar-header {
+  justify-content: center;
+}
+
+.sidebar-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar-logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.sidebar-title {
+  font-size: 20px;
+  font-weight: 600;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  color: white;
+}
+
+.sidebar.closed .sidebar-title {
+  display: none;
+}
+
+/* ✅ NEW: Elegant Toggle button on right edge of sidebar */
+.sidebar-toggle-btn {
+  position: fixed;
+  top: 24px;
+  left: 246px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  color: #c026d3;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1001;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar.closed + .sidebar-toggle-btn,
+.sidebar-toggle-btn.sidebar-closed {
+  left: 56px;
+}
+
+.sidebar-toggle-btn:hover {
+  background: white;
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(192, 38, 211, 0.3);
+  color: #d946ef;
+}
+
+.sidebar-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+.sidebar-toggle-btn:active {
+  transform: translateX(2px);
+}
+
+.toggle-icon {
+  transition: transform 0.3s ease;
+  font-weight: bold;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 16px 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  margin-bottom: 4px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.nav-item.active {
+  background: white;
+  color: #c026d3;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+}
+
+.sidebar.closed .nav-item {
+  justify-content: center;
+  padding: 14px 8px;
+}
+
+.sidebar.closed .nav-item span:not(.nav-icon) {
+  display: none;
+}
+
+/* ============================================
+   MAIN CONTENT STYLES
+============================================ */
+.main-content {
+  flex: 1;
+  margin-left: 260px;
+  transition: margin-left 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content.sidebar-collapsed {
+  margin-left: 70px;
+}
+
+/* ============================================
+   TOP HEADER STYLES - BRIGHT MAGENTA
+============================================ */
+.top-header {
+  background: white;
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #f0abfc;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(217, 70, 239, 0.08);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #c026d3;
+  padding: 8px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #c026d3;
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* ✅ ENHANCED: Country Selector - Bright Magenta Theme */
+.country-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 2px solid #f0abfc;
+}
+
+.country-selector:hover {
+  background: linear-gradient(135deg, #fae8ff 0%, #f0abfc 100%);
+  border-color: #e879f9;
+}
+
+.country-flag {
+  font-size: 20px;
+}
+
+.country-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #c026d3;
+}
+
+.country-dropdown {
+  font-size: 10px;
+  color: #d946ef;
+}
+
+/* ✅ ENHANCED: User Menu - Bright Magenta Theme */
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px 8px 8px;
+  background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
+  border-radius: 12px;
+  border: 2px solid #f0abfc;
+  transition: all 0.3s;
+}
+
+.user-menu:hover {
+  border-color: #e879f9;
+  box-shadow: 0 4px 12px rgba(217, 70, 239, 0.15);
+}
+
+.user-avatar-container {
+  position: relative;
+}
+
+.user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d946ef 0%, #f0abfc 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  border: 3px solid white;
+  box-shadow: 0 4px 12px rgba(217, 70, 239, 0.3);
+  letter-spacing: 1px;
+}
+
+.avatar-status {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  background: #10b981;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.user-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #c026d3;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+}
+
+.user-role {
+  font-size: 12px;
+  font-weight: 600;
+  color: #d946ef;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-logout {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #d946ef 0%, #c026d3 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(217, 70, 239, 0.3);
+  white-space: nowrap;
+}
+
+.btn-logout:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(217, 70, 239, 0.5);
+  background: linear-gradient(135deg, #c026d3 0%, #a21caf 100%);
+}
+
+.logout-icon {
+  font-size: 16px;
+}
+
+/* ============================================
+   CONTENT AREA
+============================================ */
+.content-area {
+  flex: 1;
+  padding: 32px;
+  overflow-y: auto;
+}
+
+/* ============================================
+   LOADING SPINNER - BRIGHT MAGENTA
+============================================ */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f0abfc;
+  border-top-color: #d946ef;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   STATS GRID - BRIGHT MAGENTA THEME
+============================================ */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(217, 70, 239, 0.08);
+  transition: all 0.3s;
+  border: 2px solid #f0abfc;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(217, 70, 239, 0.15);
+  border-color: #e879f9;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #d946ef;
+  margin-bottom: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-size: 36px;
+  font-weight: 700;
+  color: #c026d3;
+  margin-bottom: 8px;
+}
+
+.stat-change {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.stat-change.positive {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.stat-change.negative {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* ============================================
+   CHART CARD - BRIGHT MAGENTA THEME
+============================================ */
+.chart-card {
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(217, 70, 239, 0.08);
+  margin-bottom: 32px;
+  border: 2px solid #f0abfc;
+}
+
+.chart-header {
+  margin-bottom: 24px;
+}
+
+.chart-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #c026d3;
+  margin: 0;
+}
+
+.simple-chart {
+  width: 100%;
+  height: 300px;
+}
+
+.chart-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 100%;
+  gap: 8px;
+}
+
+.chart-bar-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.chart-bar {
+  width: 100%;
+  background: linear-gradient(135deg, #d946ef 0%, #f0abfc 100%);
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 8px;
+  transition: all 0.3s;
+  position: relative;
+  min-height: 30px;
+}
+
+.chart-bar:hover {
+  background: linear-gradient(135deg, #c026d3 0%, #e879f9 100%);
+  transform: translateY(-4px);
+}
+
+.chart-bar-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+}
+
+.chart-label {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #d946ef;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ============================================
+   AI SUGGESTIONS - BRIGHT MAGENTA THEME
+============================================ */
+.ai-suggestions-card {
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(217, 70, 239, 0.08);
+  margin-bottom: 32px;
+  border: 2px solid #f0abfc;
+}
+
+.ai-header {
+  margin-bottom: 24px;
+}
+
+.ai-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #c026d3;
+  margin: 0;
+}
+
+.suggestion-item {
+  padding: 20px;
+  background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border-left: 4px solid #d946ef;
+  transition: all 0.2s;
+}
+
+.suggestion-item:hover {
+  background: linear-gradient(135deg, #fae8ff 0%, #f0abfc 100%);
+  transform: translateX(4px);
+}
+
+.suggestion-item:last-child {
+  margin-bottom: 0;
+}
+
+.suggestion-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #c026d3;
+  margin-bottom: 8px;
+}
+
+.suggestion-description {
+  font-size: 14px;
+  color: #c026d3;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.suggestion-link {
+  font-size: 14px;
+  color: #d946ef;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.suggestion-link:hover {
+  color: #c026d3;
+  text-decoration: underline;
+}
+
+/* ============================================
+   QUICK ACTIONS - BRIGHT MAGENTA THEME
+============================================ */
+.quick-actions-card {
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(217, 70, 239, 0.08);
+  border: 2px solid #f0abfc;
+}
+
+.quick-actions-header {
+  margin-bottom: 24px;
+}
+
+.quick-actions-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #c026d3;
+  margin: 0;
+}
+
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.quick-action-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 2px solid #f0abfc;
+}
+
+.quick-action-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(217, 70, 239, 0.15);
+  border-color: #d946ef;
+  background: linear-gradient(135deg, #fae8ff 0%, #f0abfc 100%);
+}
+
+.quick-action-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.quick-action-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.quick-action-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #d946ef;
+}
+
+.quick-action-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #c026d3;
+}
+
+/* ============================================
+   COMING SOON - BRIGHT MAGENTA THEME
+============================================ */
+.coming-soon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
+  border-radius: 12px;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(217, 70, 239, 0.08);
+  border: 2px solid #f0abfc;
+}
+
+.coming-soon-icon {
+  font-size: 80px;
+  margin-bottom: 24px;
+  opacity: 0.5;
+}
+
+.coming-soon h3 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #c026d3;
+  margin-bottom: 12px;
+}
+
+.coming-soon p {
+  font-size: 16px;
+  color: #d946ef;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+============================================ */
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quick-actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(192, 38, 211, 0.5);
+    z-index: 999;
+    display: block;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .main-content.sidebar-collapsed {
+    margin-left: 0;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .top-header {
+    padding: 16px 20px;
+  }
+
+  .page-title {
+    font-size: 20px;
+  }
+
+  .header-actions {
+    gap: 12px;
+  }
+
+  .country-selector {
+    display: none;
+  }
+
+  .user-menu {
+    padding: 6px 12px 6px 6px;
+    gap: 10px;
+  }
+
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .user-name {
+    font-size: 13px;
+  }
+
+  .user-role {
+    font-size: 11px;
+  }
+
+  .btn-logout {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .logout-icon {
+    display: none;
+  }
+
+  .content-area {
+    padding: 20px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .quick-actions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-bars {
+    gap: 4px;
+  }
+
+  .chart-bar-value {
+    font-size: 12px;
+  }
+
+  .chart-label {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-info {
+    display: none;
+  }
+
+  .btn-logout {
+    padding: 8px;
+  }
+
+  .stat-value {
+    font-size: 28px;
+  }
+
+  .quick-action-icon {
+    font-size: 28px;
+  }
+
+  .quick-action-label {
+    font-size: 13px;
+  }
+
+  .quick-action-value {
+    font-size: 16px;
+  }
+}
