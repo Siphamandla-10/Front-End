@@ -42,7 +42,7 @@ body {
   width: 70px;
 }
 
-/* ✅ UPDATED: Sidebar header without toggle button */
+/* ✅ Sidebar header */
 .sidebar-header {
   display: flex;
   align-items: center;
@@ -50,6 +50,7 @@ body {
   padding: 20px 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .sidebar.closed .sidebar-header {
@@ -83,50 +84,49 @@ body {
   display: none;
 }
 
-/* ✅ NEW: Elegant Toggle button on right edge of sidebar */
+/* ✅ PROFESSIONAL: Small Toggle Button in Top Corner of Sidebar */
 .sidebar-toggle-btn {
-  position: fixed;
-  top: 24px;
-  left: 246px;
-  width: 36px;
-  height: 36px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
-  border: none;
-  border-radius: 50%;
-  color: #c026d3;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  color: white;
   font-size: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1001;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  padding: 0;
 }
 
-.sidebar.closed + .sidebar-toggle-btn,
-.sidebar-toggle-btn.sidebar-closed {
-  left: 56px;
+.sidebar.closed .sidebar-toggle-btn {
+  right: 12px;
 }
 
 .sidebar-toggle-btn:hover {
-  background: white;
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
   transform: scale(1.1);
-  box-shadow: 0 4px 16px rgba(192, 38, 211, 0.3);
-  color: #d946ef;
 }
 
 .sidebar-toggle-btn:active {
   transform: scale(0.95);
 }
 
-.sidebar-toggle-btn:active {
-  transform: translateX(2px);
-}
-
 .toggle-icon {
-  transition: transform 0.3s ease;
-  font-weight: bold;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sidebar-nav {
@@ -833,6 +833,11 @@ body {
 
   .chart-label {
     font-size: 10px;
+  }
+
+  /* ✅ Hide toggle button on mobile */
+  .sidebar-toggle-btn {
+    display: none;
   }
 }
 

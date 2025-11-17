@@ -346,15 +346,6 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-layout">
-      {/* ✅ UPDATED: Elegant circular toggle button */}
-      <button 
-        className={`sidebar-toggle-btn ${!sidebarOpen ? 'sidebar-closed' : ''}`}
-        onClick={toggleSidebar} 
-        title={sidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
-      >
-        <span className="toggle-icon">{sidebarOpen ? '❮' : '❯'}</span>
-      </button>
-
       {sidebarOpen && (
         <div 
           className="sidebar-overlay" 
@@ -363,12 +354,22 @@ const Dashboard = () => {
       )}
 
       <aside className={`sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
-        {/* ✅ UPDATED: Sidebar header without toggle button */}
+        {/* ✅ Sidebar header with toggle button inside */}
         <div className="sidebar-header">
           <div className="sidebar-header-left">
             <img src="/Assets/icon.png" alt="Deliver Now" className="sidebar-logo-img" />
             {sidebarOpen && <h1 className="sidebar-title">Deliver Now</h1>}
           </div>
+          
+          {/* ✅ Small toggle button in top-right corner */}
+          <button 
+            className="sidebar-toggle-btn"
+            onClick={toggleSidebar} 
+            title={sidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
+            aria-label={sidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
+          >
+            <span className="toggle-icon">{sidebarOpen ? '‹' : '›'}</span>
+          </button>
         </div>
 
         <nav className="sidebar-nav">
