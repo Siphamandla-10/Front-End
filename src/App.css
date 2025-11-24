@@ -846,159 +846,13 @@ body {
 }
 
 /* ===============================================
-   SEARCH BAR STYLES
+   DRIVERS PAGE STYLES
    =============================================== */
 
-.search-filter-container {
-  margin-bottom: 20px;
-}
-
-.search-bar {
-  position: relative;
-  width: 100%;
-  max-width: 600px;
-}
-
-.search-input {
-  width: 100%;
-  padding: 12px 45px 12px 16px;
-  border: 2px solid #e0e0e0;
-  border-radius: 10px;
-  font-size: 14px;
-  transition: all 0.3s ease;
-  outline: none;
-}
-
-.search-input:focus {
-  border-color: #D946EF;
-  box-shadow: 0 0 0 3px rgba(217, 70, 239, 0.1);
-}
-
-.search-icon {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 18px;
-  color: #666;
-  pointer-events: none;
-}
-
-.clear-search-btn {
-  position: absolute;
-  right: 45px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: #999;
-  cursor: pointer;
-  font-size: 18px;
-  padding: 4px 8px;
-  transition: color 0.3s ease;
-}
-
-.clear-search-btn:hover {
-  color: #D946EF;
-}
-
-.search-results-info {
-  margin-top: 12px;
-  padding: 10px 16px;
-  background: linear-gradient(135deg, #FDF4FF 0%, #FAE8FF 100%);
-  border-radius: 8px;
-  color: #666;
-  font-size: 14px;
-  border-left: 4px solid #D946EF;
-}
-
-/* ===============================================
-   ACTION BUTTONS
-   =============================================== */
-
-.action-buttons-group {
-  display: flex;
-  gap: 12px;
-}
-
-.btn-bulk-delete {
-  padding: 12px 20px;
-  background: #ef4444;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-
-.btn-bulk-delete:hover {
-  background: #dc2626;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
-}
-
-.btn-edit {
-  padding: 8px 14px;
-  background: #3b82f6;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-edit:hover {
-  background: #2563eb;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-}
-
-/* Order Details Summary in Modal */
-.order-details-summary {
-  padding: 20px 28px;
-  background: #f9fafb;
-  border-radius: 8px;
-  margin: 0 28px 20px 28px;
-}
-
-.order-details-summary h4 {
-  font-size: 16px;
-  font-weight: 600;
-  color: #1a1d2e;
-  margin-bottom: 12px;
-}
-
-.order-details-summary p {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 8px;
-}
-
-.order-details-summary p:last-child {
-  margin-bottom: 0;
-}
-
-.disabled-input {
-  background: #f3f4f6 !important;
-  cursor: not-allowed;
-  color: #6b7280;
-}
-
-/* ===============================================
-   ORDERS & DRIVERS PAGE STYLES
-   =============================================== */
-
-.orders-page,
 .drivers-page {
   padding: 0;
 }
 
-.orders-header,
 .drivers-header {
   background: white;
   padding: 24px;
@@ -1007,19 +861,11 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.orders-title,
 .drivers-title {
   font-size: 24px;
   font-weight: 600;
   color: #1a1d2e;
   margin-bottom: 20px;
-}
-
-.orders-filters,
-.drivers-filters {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
 }
 
 .drivers-actions {
@@ -1032,6 +878,9 @@ body {
 
 .drivers-filters {
   flex: 1;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .filter-btn {
@@ -1077,7 +926,6 @@ body {
   background: linear-gradient(135deg, #C026D3 0%, #D946EF 100%);
 }
 
-.orders-table-container,
 .drivers-table-container {
   background: white;
   border-radius: 12px;
@@ -1085,22 +933,16 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.orders-table,
 .drivers-table {
   width: 100%;
   border-collapse: collapse;
-}
-
-.drivers-table {
   min-width: 1200px;
 }
 
-.orders-table thead,
 .drivers-table thead {
   background: linear-gradient(to right, #FDF4FF 0%, #FAE8FF 100%);
 }
 
-.orders-table th,
 .drivers-table th {
   padding: 16px;
   text-align: left;
@@ -1113,7 +955,6 @@ body {
   white-space: nowrap;
 }
 
-.orders-table td,
 .drivers-table td {
   padding: 16px;
   border-bottom: 1px solid #f0f0f0;
@@ -1121,79 +962,28 @@ body {
   color: #333;
 }
 
-.orders-table tbody tr,
 .drivers-table tbody tr {
   transition: background 0.2s ease;
 }
 
-.orders-table tbody tr:hover,
 .drivers-table tbody tr:hover {
   background: #FDF4FF;
 }
 
-.order-number,
 .driver-name {
   font-weight: 600;
   color: #D946EF;
 }
 
-.customer-info,
 .driver-info {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.customer-name,
-.driver-name {
-  font-weight: 500;
-  color: #1a1d2e;
-}
-
-.customer-contact,
 .driver-vehicle {
   font-size: 12px;
   color: #666;
-}
-
-.location-info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  max-width: 200px;
-}
-
-.location-street {
-  font-weight: 500;
-  color: #1a1d2e;
-}
-
-.location-city {
-  font-size: 12px;
-  color: #666;
-}
-
-.items-list {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.item-row {
-  font-size: 13px;
-  color: #333;
-}
-
-.item-more {
-  font-size: 12px;
-  color: #D946EF;
-  font-weight: 500;
-}
-
-.order-amount {
-  font-weight: 600;
-  color: #10b981;
-  font-size: 15px;
 }
 
 .vehicle-type {
@@ -1229,36 +1019,6 @@ body {
   font-size: 12px;
   font-weight: 600;
   text-transform: capitalize;
-}
-
-.status-badge-pending {
-  background: #fef3c7;
-  color: #92400e;
-}
-
-.status-badge-confirmed {
-  background: #dbeafe;
-  color: #1e40af;
-}
-
-.status-badge-picked {
-  background: #e0e7ff;
-  color: #4338ca;
-}
-
-.status-badge-transit {
-  background: #ddd6fe;
-  color: #5b21b6;
-}
-
-.status-badge-delivered {
-  background: #d1fae5;
-  color: #065f46;
-}
-
-.status-badge-cancelled {
-  background: #fee2e2;
-  color: #991b1b;
 }
 
 .status-badge-active,
@@ -1301,11 +1061,6 @@ body {
   font-size: 15px;
 }
 
-.order-date {
-  font-size: 13px;
-  color: #666;
-}
-
 .action-buttons {
   display: flex;
   gap: 8px;
@@ -1346,6 +1101,24 @@ body {
   background: #dc2626;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.btn-edit {
+  padding: 8px 14px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-edit:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 .no-data {
@@ -1527,6 +1300,12 @@ body {
   background: linear-gradient(135deg, #C026D3 0%, #D946EF 100%);
 }
 
+.disabled-input {
+  background: #f3f4f6 !important;
+  cursor: not-allowed;
+  color: #6b7280;
+}
+
 /* ===============================================
    RESPONSIVE DESIGN
    =============================================== */
@@ -1674,23 +1453,6 @@ body {
   .coming-soon h3 {
     font-size: 24px;
   }
-
-  .search-bar {
-    max-width: 100%;
-  }
-  
-  .action-buttons-group {
-    flex-direction: column;
-    width: 100%;
-  }
-  
-  .btn-bulk-delete {
-    width: 100%;
-  }
-  
-  .search-results-info {
-    font-size: 13px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -1723,13 +1485,11 @@ body {
     font-size: 24px;
   }
   
-  .drivers-header,
-  .orders-header {
+  .drivers-header {
     padding: 20px;
   }
   
-  .drivers-title,
-  .orders-title {
+  .drivers-title {
     font-size: 20px;
   }
   
